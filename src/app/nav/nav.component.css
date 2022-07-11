@@ -1,22 +1,15 @@
-.btn-space {
+.navbar{
+    background-color: rgb(169, 191, 169);
+    
+  }
+
+  .btn-space {
     margin-right: 20px;
   }
   .btn-width{
     width: 75px !important;
   }
-  
-  .card {
-    font: inherit;
-    margin: 0 auto;
-    float: none;
-    margin-bottom: 10px;
-    margin-top: 200px;
-    background-color: rgb(169, 191, 169);
-  }
-  .mt-10{
-    margin-top: 10%;
-  }
-  
+
   .btn {
     font: inherit;
     border: 1px solid #043419;
@@ -26,4 +19,3 @@
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
     cursor: pointer;
   }
-  
