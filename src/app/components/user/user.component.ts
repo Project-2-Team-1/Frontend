@@ -1,8 +1,6 @@
-import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
-import { throwError, Observable, catchError } from 'rxjs';
-import { url } from 'src/environments/environment';
-import { User } from 'src/app/models/user';
+
 
 
 @Component({
@@ -11,8 +9,5 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent {
-
-
   
-
 }
