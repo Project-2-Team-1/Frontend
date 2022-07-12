@@ -7,7 +7,7 @@ export const environment = {
 };
 
 export const API_KEY = "OcqX9auv98CBweX5IEtQZIYRoYST7u883NZPSkSo";
-export const PARKS_BASE_URL = `developer.nps.gov/api/v1`
+export const PARKS_BASE_URL = `https://developer.nps.gov/api/v1`
 
 /*
  * For easier debugging in development mode, you can import the following file

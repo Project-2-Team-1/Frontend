@@ -23,6 +23,12 @@ export class ParkService {
 
   searchParksByState(state: string) {
     return this.http.get(`${PARKS_URL}?stateCode=${state}&api_key=${API_KEY}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  searchParksByQueryAndState(query: string, state: string) {
+    return this.http.get(`${PARKS_URL}?q=${query}&stateCode=${state}&api_key=${API_KEY}`)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(httpError: HttpErrorResponse) {
