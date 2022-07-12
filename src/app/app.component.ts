@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Project-2-Team-1_frontend';
+  title = 'JACL Adventure Finder';
 
     // make it public so other components (like our login component can toggle this property)
     public isLoggedIn: boolean = false;
@@ -24,4 +24,5 @@ export class AppComponent {
       // this.isLoggedIn = false;
       // NgRx is state mgmt for Angular
     }
+ 
 }
