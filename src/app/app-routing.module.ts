@@ -1,3 +1,4 @@
+import { NavComponent } from './nav/nav.component';
 import { ParkComponent } from './components/park/park.component';
 import { UserComponent } from './components/user/user.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path: "search", component: SearchResultsComponent},
   {path: "dashboard", component: UserComponent},
   {path: "park", component: ParkComponent}
+
+  
  ];
 
 @NgModule({
