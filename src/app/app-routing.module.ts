@@ -1,4 +1,3 @@
-import { NavComponent } from './nav/nav.component';
 import { ParkComponent } from './components/park/park.component';
 import { UserComponent } from './components/user/user.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
@@ -27,5 +26,6 @@ export const routingComponents = [
   RegisterComponent, 
   SearchResultsComponent, 
   UserComponent, 
-  ParkComponent
+  ParkComponent,
+  
 ];
