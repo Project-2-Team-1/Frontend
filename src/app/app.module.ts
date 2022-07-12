@@ -1,3 +1,4 @@
+import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,7 +12,8 @@ import { SearchResultsListItemComponent } from './components/search-results-list
   declarations: [
     AppComponent,
     ...routingComponents,
-    SearchResultsListItemComponent
+    SearchResultsListItemComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
