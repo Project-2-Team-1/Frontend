@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './nav/nav.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { ParkComponent } from './components/park/park.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserComponent,
+    SearchResultsComponent,
+    ParkComponent
   ],
   imports: [
     BrowserModule,
