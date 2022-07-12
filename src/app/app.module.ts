@@ -1,3 +1,4 @@
+import { ParkComponent } from './components/park/park.component';
 import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +22,7 @@ import { SearchResultsListItemComponent } from './components/search-results-list
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ParkComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

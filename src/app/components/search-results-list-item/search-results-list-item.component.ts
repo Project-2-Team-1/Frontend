@@ -1,3 +1,4 @@
+import { ParkComponent } from './../park/park.component';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -9,7 +10,7 @@ export class SearchResultsListItemComponent implements OnInit {
   
   @Input() park: any;
 
-  constructor() { }
+  constructor(public parkComponent: ParkComponent) { }
 
   ngOnInit(): void {
   }

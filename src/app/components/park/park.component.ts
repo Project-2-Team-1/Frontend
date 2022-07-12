@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParkComponent implements OnInit {
 
+  park: any;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setPark(park:any) {
+    this.park = park;
+    console.log(this.park);
   }
 
 }
