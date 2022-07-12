@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Project-2-Team-1_frontend';
+  title = 'JACL Adventure Finder';
+  
+  username: string = '';
+
+  updateUserData(username: string): void{
+    this.username = username;
+  }
+
 }
