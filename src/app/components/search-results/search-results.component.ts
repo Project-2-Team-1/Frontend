@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class SearchResultsComponent implements OnInit {
 
-  parks: Object[] = [];
+  parks: any[] = [];
   query: string = "";
   state: string = "";
   message: string = "";
@@ -32,7 +32,7 @@ export class SearchResultsComponent implements OnInit {
       this.message = "Bad input";
     }
     response?.subscribe(res => {
-      console.log(res);
+      this.parks = res.data;
     })
   }
 }

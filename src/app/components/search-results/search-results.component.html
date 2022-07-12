@@ -68,13 +68,16 @@
             <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </form>
-    <hr>
     <div>
+        <hr *ngIf="parks.length == 0">
         <p class="text-center p-5" *ngIf="parks.length == 0">
             Use the form above to search for parks!
         </p>
         <ul class="list-group" *ngFor="let p of parks">
-
+            <app-search-results-list-item
+                [park]=p 
+            >
+            </app-search-results-list-item>
         </ul>
     </div>
 </div>
