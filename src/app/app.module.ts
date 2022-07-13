@@ -11,13 +11,15 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { ParkComponent } from './components/park/park.component';
 import { FormsModule } from '@angular/forms';
 import { SearchResultsListItemComponent } from './components/search-results-list-item/search-results-list-item.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ...routingComponents,
     SearchResultsListItemComponent,
-    NavComponent
+    NavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,6 @@
 export const environment = {
   production: false
 };
-export const url = `http://localhost:5000/api`;
 
 export const url = `http://localhost:5000/project2`
 export const API_KEY = "OcqX9auv98CBweX5IEtQZIYRoYST7u883NZPSkSo";
@@ -17,5 +16,6 @@ export const PARKS_BASE_URL = `https://developer.nps.gov/api/v1`
  *
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
+ * 
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
