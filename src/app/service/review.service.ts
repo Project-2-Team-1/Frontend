@@ -27,8 +27,8 @@ export class ReviewService {
       .pipe(catchError(this.handleError));
   }
 
-  uploadReview(review: Review): Observable<Review> {
-    return this.http.post<Review>(`${this.reviewUrl}/add`, review, this.httpOptions)
+  uploadReview(review: any): Observable<Review> {
+    return this.http.post<Review>(`${this.reviewUrl}`, review, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
