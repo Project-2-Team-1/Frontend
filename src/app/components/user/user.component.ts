@@ -5,7 +5,7 @@ import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
-  selector: 'user',
+  selector: 'dashboard',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })

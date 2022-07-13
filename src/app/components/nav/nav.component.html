@@ -4,17 +4,13 @@
   aria-label="Fourth navbar example"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/login">JACL Adventure Finder</a>
+    <a class="navbar-brand" routerLink="/dashboard">JACL Adventure Finder Home</a>
     <div class="col-xs-3 text-right">
       <button *ngIf="!isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/login">
         Login
       </button>
       <button *ngIf="!isLoggedIn" type="button" class="btn btn-sm btn-light btn-width" routerLink="/register">
         Register
-      </button>
-
-      <button *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/dashboard">
-        Home
       </button>
 
       <button *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/park">
@@ -24,6 +20,7 @@
       <button *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/user-info">
         Update My Info
       </button>
+      <button (click)="signOut()" *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width">Logout</button>
 
     </div>
   </div>

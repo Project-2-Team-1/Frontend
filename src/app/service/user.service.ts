@@ -30,7 +30,7 @@ export class UserService {
   }
 
   registerUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.userUrl}/add`, user, this.httpOptions)
+    return this.http.post<User>(`${this.userUrl}`, user, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
