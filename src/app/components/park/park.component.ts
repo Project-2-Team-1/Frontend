@@ -1,3 +1,5 @@
+import { DataService } from './../../service/data.service';
+import { ReviewService } from './../../service/review.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,16 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParkComponent implements OnInit {
 
-  park: any;
+  park: any = {
+    fullName: ""
+  };
+  reviews: any[] = [];
+  overallRating: number = 0;
 
-  constructor() { }
+
+  constructor(private reviewService: ReviewService, private dataService: DataService) { }
 
   ngOnInit(): void {
-  }
-
-  setPark(park:any) {
-    this.park = park;
-    console.log(this.park);
+    this.dataService.park = {
+      parkCode: "mora",
+      fullName: "Mount Rainier National Park",
+      name: "Rainier"
+    }
+    let temp = this.dataService.park;
+    if(!temp?.parkCode){
+      return;
+    }
+    this.park = temp;
+    this.reviewService.findReviewsByParkCode(this.park.parkCode).subscribe(response => {
+      console.log(response)
+      this.reviews = response.filter((r) => {
+        console.log(r.content);
+        return r.content != ""
+      });
+      let sum = 0;
+      let length = 0;
+      for(let r of response) {
+        if(r.rating > 0) {
+          length++;
+        }
+        sum += r.rating;
+      }
+      this.overallRating = sum / length;
+    });
+    console.log(this.park, this.reviews);
   }
 
 }

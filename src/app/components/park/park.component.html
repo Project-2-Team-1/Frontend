@@ -1,1 +1,42 @@
-<p>park works!</p>
+<div *ngIf="!park.fullName" class="mt-5">
+    <p class="text-center">Oops! No park here! <br> <a routerLink="/search">Would you like to search for a park?</a></p>
+</div>
+<div *ngIf="park.fullName">
+    <h2 class="text-center">{{park.fullName}}</h2>
+    <h6 class="text-center">{{overallRating ? overallRating + " stars" : "This park has not been rated yet!"}}</h6>
+    <p>
+        {{park.description}}
+    </p>
+    <div id="reviews-container" class="mt-5 mx-auto card" *ngIf="reviews.length">
+        <h3 class="card-header card-title">Reviews for {{park.name}}</h3>
+        <div class="card-body">
+            <ul *ngFor="let r of reviews">
+                <li *ngIf="r.rating > 0 && r.content">
+                    <h5>Rated {{r.rating}} stars by {{r.user.username}}</h5>
+                    <p>{{r.content}}</p>
+                </li>
+            </ul>
+            <p *ngIf="!reviews.length">
+                No reviews for {{park.name}} yet!
+            </p>
+        </div>
+        <button class="btn btn-primary my-2 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
+        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="reviewModalLabel">Write a Review</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

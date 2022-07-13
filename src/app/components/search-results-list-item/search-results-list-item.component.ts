@@ -1,4 +1,4 @@
-import { ParkComponent } from './../park/park.component';
+import { DataService } from './../../service/data.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +10,7 @@ export class SearchResultsListItemComponent implements OnInit {
   
   @Input() park: any;
 
-  constructor(public parkComponent: ParkComponent) { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
   }
