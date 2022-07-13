@@ -6,12 +6,25 @@
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/login">JACL Adventure Finder</a>
     <div class="col-xs-3 text-right">
-      <button type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/login">
+      <button *ngIf="!isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/login">
         Login
       </button>
-      <button type="button" class="btn btn-sm btn-light btn-width" routerLink="/register">
+      <button *ngIf="!isLoggedIn" type="button" class="btn btn-sm btn-light btn-width" routerLink="/register">
         Register
       </button>
+
+      <button *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/dashboard">
+        Home
+      </button>
+
+      <button *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/park">
+        Parks
+      </button>
+
+      <button *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/user-info">
+        Update My Info
+      </button>
+
     </div>
   </div>
 </nav>

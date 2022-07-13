@@ -4,19 +4,19 @@
 <br>
 <div class="park-list" *ngIf="userService.getMyParks.length > 0">
   <label for="park-list" class="list-label"><strong>My Parks</strong></label>
+
     <!--Rendered based upon which parks the user likes/saves-->
     
     <ul class="my-park-list">
-      <app-user></app-user>
+      <user></user>
     </ul>
 </div>
 <br>
 <div class="review-list" *ngIf="userService.getMyReviews.length > 0">
   <label for="review-list" class="list-label"><strong>My Reviews</strong></label>
+  
     <!--Rendered based upon user's reviews-->
     
     <ul class="my-review-list">  
-      <app-user></app-user>    
+      <user></user>    
     </ul>
-</div>
-
