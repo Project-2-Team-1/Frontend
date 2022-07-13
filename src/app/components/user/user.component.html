@@ -4,7 +4,7 @@
   aria-label="Fourth navbar example"
 >
   <div class="container-fluid">
-    <a class="navbar-brand">{{ title }}</a>
+    <a class="navbar-brand">JACL Adventure Finder</a>
     <div class="col-xs-3 text-right">
       <button type="button" class="btn btn-sm btn-light btn-space btn-width">
         Log Out
@@ -20,20 +20,24 @@
   </div>
 </nav>
 <div class="welcome-heading align-self-center" id="welcome-user-home">
-    <h1><strong>Welcome {{ appComponent.username }}!</strong></h1>
+    <h1><strong>Welcome {{ this.appComponent.username }}!</strong></h1>
 </div>
 <br>
-<div class="park-list" *ngIf="user.getMyParks.length > 0">
+<div class="park-list" *ngIf="userService.getMyParks.length > 0">
   <label for="park-list" class="list-label"><strong>My Parks</strong></label>
     <!--Rendered based upon which parks the user likes/saves-->
+    
     <ul class="my-park-list">
+      <app-user></app-user>
     </ul>
 </div>
 <br>
-<div class="review-list" *ngIf="user.getMyReviews.length > 0">
+<div class="review-list" *ngIf="userService.getMyReviews.length > 0">
   <label for="review-list" class="list-label"><strong>My Reviews</strong></label>
     <!--Rendered based upon user's reviews-->
-    <ul class="my-review-list">      
+    
+    <ul class="my-review-list">  
+      <app-user></app-user>    
     </ul>
 </div>
 

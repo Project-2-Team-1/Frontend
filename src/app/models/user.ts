@@ -1,9 +1,13 @@
+import { Park } from "./Park";
+import { Review } from "./Review";
+
 export class User{
     id: number;
     firstName: string;
     lastName: string;
     username: string;
     password: string;
+    email: string;
 
   constructor(
     id: number, 
@@ -22,5 +26,5 @@ export class User{
     this.password = password
     this.email = email
   }
-    email: string;
+    
 }
