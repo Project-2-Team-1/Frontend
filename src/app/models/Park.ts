@@ -3,8 +3,9 @@ export class Park {
     name: string;
     fullName: string;
     description: string;
+    weatherInfo: string;
 
-  constructor(
+    constructor(
     parkCode: string, 
     name: string, 
     fullName: string, 
@@ -17,6 +18,8 @@ export class Park {
     this.description = description
     this.weatherInfo = weatherInfo
   }
-    weatherInfo: string;
+
     
 }
+
+

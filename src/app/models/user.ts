@@ -16,8 +16,8 @@ export class User{
     username: string, 
     password: string, 
     email: string,
-    parks: Park[],
-    review: Review[]
+   // parks: Park[],
+   // review: Review[]
 ) {
     this.id = id
     this.firstName = firstName
