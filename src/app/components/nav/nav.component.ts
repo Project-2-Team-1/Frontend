@@ -12,4 +12,10 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  signOut(): void {
+    window.location.reload();
+    // this.isLoggedIn = false;
+    // NgRx is state mgmt for Angular
+  }
+
 }

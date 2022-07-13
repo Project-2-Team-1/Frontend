@@ -15,8 +15,7 @@ const routes: Routes = [
   {path: "dashboard", component: UserComponent},
   {path: "park", component: ParkComponent},
   {path: "update-info", component: UpdateInfoComponent},
-  {path: "**", component: HomeComponent}
-
+  {path: "home", component: HomeComponent}
   
  ];
 
