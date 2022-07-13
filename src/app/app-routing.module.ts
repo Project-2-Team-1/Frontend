@@ -1,4 +1,4 @@
-import { NavComponent } from './nav/nav.component';
+import { HomeComponent } from './components/home/home.component';
 import { ParkComponent } from './components/park/park.component';
 import { UserComponent } from './components/user/user.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
@@ -8,11 +8,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: "", component: LoginComponent},
+  {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "search", component: SearchResultsComponent},
   {path: "dashboard", component: UserComponent},
-  {path: "park", component: ParkComponent}
+  {path: "park", component: ParkComponent},
+  {path: "", component: HomeComponent}
 
   
  ];
@@ -27,5 +28,6 @@ export const routingComponents = [
   RegisterComponent, 
   SearchResultsComponent, 
   UserComponent, 
-  ParkComponent
+  ParkComponent,
+  
 ];
