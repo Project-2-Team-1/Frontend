@@ -23,7 +23,7 @@ export class ParkComponent implements OnInit {
   constructor(private reviewService: ReviewService, private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.park = placeholder.data[0]; // Remove this line for actual use - testing purposes only
+    // this.dataService.park = placeholder.data[0]; // Remove this line for actual use - testing purposes only
     console.log(this.dataService.park)
     let temp = this.dataService.park;
     if(!temp?.parkCode){
