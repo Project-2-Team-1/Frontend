@@ -1,3 +1,4 @@
+import { UpdateInfoComponent } from './components/update-info/update-info.component';
 import { HomeComponent } from './components/home/home.component';
 import { ParkComponent } from './components/park/park.component';
 import { UserComponent } from './components/user/user.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: "search", component: SearchResultsComponent},
   {path: "dashboard", component: UserComponent},
   {path: "park", component: ParkComponent},
+  {path: "update-info", component: UpdateInfoComponent},
   {path: "**", component: HomeComponent}
 
   
@@ -27,7 +29,9 @@ export const routingComponents = [
   LoginComponent, 
   RegisterComponent, 
   SearchResultsComponent, 
-  UserComponent, 
   ParkComponent,
+  UserComponent,
+  UpdateInfoComponent,
+  HomeComponent
   
 ];
