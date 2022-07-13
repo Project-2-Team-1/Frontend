@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: "search", component: SearchResultsComponent},
   {path: "dashboard", component: UserComponent},
   {path: "park", component: ParkComponent},
-  {path: "", component: HomeComponent}
+  {path: "**", component: HomeComponent}
 
   
  ];

@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent {
 
-  title = 'Register User'
+  title = 'Please Register Below:'
 
   user: User = new User(0, ``, ``, ``, ``, ``, [], []);
   clientMessage: ClientMessage = new ClientMessage('');
