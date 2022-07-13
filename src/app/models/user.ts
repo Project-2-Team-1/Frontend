@@ -4,6 +4,7 @@ export class User{
     lastName: string;
     username: string;
     password: string;
+    email: string;
 
   constructor(
     id: number, 
@@ -22,5 +23,5 @@ export class User{
     this.password = password
     this.email = email
   }
-    email: string;
+   
 }
