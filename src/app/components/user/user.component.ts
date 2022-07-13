@@ -16,9 +16,17 @@ export class UserComponent implements OnInit {
 
   constructor(public userService: UserService, public appComponent: AppComponent, public user: UserComponent) { }
 
+  userData(): any{      
+    (response: any) => {
+    const token = response.headers.get('adventure-token');
+    sessionStorage.setItem('token', token);      
+    return response.body.id;
+    } 
+}
+
   ngOnInit(): void {
-    this.userService.getMyParks(this.User.getId);
-    this.userService.getMyReviews(this.User.getId);
+    this.userService.getMyParks(this.userData());
+    this.userService.getMyReviews(this.userData());
   }
 
 }

@@ -1,4 +1,6 @@
+import { identifierName } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
