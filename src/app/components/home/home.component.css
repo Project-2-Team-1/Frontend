@@ -1,0 +1,27 @@
+img{
+    width: 110%;
+    margin-right: -10px;
+  }
+  .card {
+    font: inherit;
+    margin: 0 auto;
+    float: none;
+
+    background-color: rgb(169, 191, 169);
+    width:fit-content;
+  
+    
+  }
+  .mt-10{
+    margin-top: 10%;
+  }
+  
+  .btn {
+    font: inherit;
+    border: 1px solid #043419;
+    background: #072f11;
+    color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+    cursor: pointer;
+  }

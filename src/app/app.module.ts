@@ -12,6 +12,7 @@ import { ParkComponent } from './components/park/park.component';
 import { FormsModule } from '@angular/forms';
 import { SearchResultsListItemComponent } from './components/search-results-list-item/search-results-list-item.component';
 import { HomeComponent } from './components/home/home.component';
+import { UpdateInfoComponent } from './components/update-info/update-info.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './components/home/home.component';
     ...routingComponents,
     SearchResultsListItemComponent,
     NavComponent,
-    HomeComponent
+    HomeComponent,
+    UpdateInfoComponent
   ],
   imports: [
     BrowserModule,

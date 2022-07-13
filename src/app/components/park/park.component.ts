@@ -14,6 +14,8 @@ export class ParkComponent implements OnInit {
   };
   reviews: any[] = [];
   overallRating: number = 0;
+  content: string = "";
+  rating: number = 0;
 
 
   constructor(private reviewService: ReviewService, private dataService: DataService) { }
@@ -46,6 +48,15 @@ export class ParkComponent implements OnInit {
       this.overallRating = sum / length;
     });
     console.log(this.park, this.reviews);
+  }
+
+  submitReview() {
+    console.log("clicked")
+    if(this.content.trim() && this.rating){
+      document.getElementById("modal-close")?.click();
+      this.rating = 0;
+      this.content = "";
+    }
   }
 
 }

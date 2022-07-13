@@ -14,27 +14,35 @@
                 <li *ngIf="r.rating > 0 && r.content">
                     <h5>Rated {{r.rating}} stars by {{r.user.username}}</h5>
                     <p>{{r.content}}</p>
+                    <hr>
                 </li>
             </ul>
             <p *ngIf="!reviews.length">
                 No reviews for {{park.name}} yet!
             </p>
         </div>
-        <button class="btn btn-primary my-2 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
+        <button class="btn btn-primary mb-4 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
         <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="reviewModalLabel">Write a Review</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <button id="modal-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form>
+                    <div class="modal-body">
+                        <label for="rating">Rating</label>
+                        <input [(ngModel)]="rating" class="form-control" type="number" name="rating" min="1" max="5">
+                        <div class="invalid-feedback">Please rate between 1 and 5</div>
+                        <label for="review-content">Review</label>
+                        <textarea [(ngModel)]="content" name="review-content" class="form-control" required></textarea>
+                        <div class="invalid-feedback">Please write your review</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" (click)="submitReview()">Save changes</button>
+                    </div>
+                </form>
               </div>
             </div>
           </div>
