@@ -5,7 +5,10 @@
   width: 75px !important;
 }
 
-
+img{
+  width: 110%;
+  margin-right: -10px;
+}
 .card {
   font: inherit;
   margin: 0 auto;
