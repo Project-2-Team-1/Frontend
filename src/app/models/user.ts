@@ -1,9 +1,15 @@
+import { Park } from "./Park";
+import { Review } from "./Review";
+
 export class User{
     id: number;
     firstName: string;
     lastName: string;
     username: string;
     password: string;
+    email: string;
+    parks: Park[];
+    reviews: Review[];
 
   constructor(
     id: number, 
@@ -12,8 +18,8 @@ export class User{
     username: string, 
     password: string, 
     email: string,
-   // parks: Park[],
-   // review: Review[]
+    parks: Park[],
+    review: Review[]
 ) {
     this.id = id
     this.firstName = firstName
@@ -21,6 +27,8 @@ export class User{
     this.username = username
     this.password = password
     this.email = email
+    this.reviews = review
+    this.parks = parks
   }
-    email: string;
+    
 }

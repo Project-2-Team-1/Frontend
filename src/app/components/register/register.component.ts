@@ -12,7 +12,7 @@ export class RegisterComponent {
 
   title = 'Register User'
 
-  user: User = new User(0, ``, ``, ``, ``, ``)
+  user: User = new User(0, ``, ``, ``, ``, ``, [], []);
   clientMessage: ClientMessage = new ClientMessage('');
 
   constructor(private userService: UserService) { }
