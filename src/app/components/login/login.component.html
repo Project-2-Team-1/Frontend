@@ -26,14 +26,21 @@
                  
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input name="email" type="email" id="form2Example1" class="form-control" placeholder="Enter your email"/>
+                  <input [(ngModel)]="username" 
+                  name="username" 
+                  type="text" 
+                  id="form2Example1" 
+                  class="form-control" 
+                  placeholder="Enter your username"/>
                   <label class="form-label" for="inputEmail4"
-                    >Email address</label
+                    >Username</label
                   >
                 </div>
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                   <input
+                  [(ngModel)]="password" 
+                  name="password"
                     type="password"
                     id="password"
                     class="form-control"
@@ -45,7 +52,8 @@
                   <button
                     type="button"
                     class="btn btn-primary btn-block mb-4 text-center"
-                    routerLink="/login"
+                    (click)="login()"
+                    *ngIf="!isLoading"
                   >
                     Login
                   </button>
@@ -53,6 +61,7 @@
                 <div class="text-center">
                   <p>Not a member? <a routerLink="/register">Register</a></p>
                 </div>
+                <p>{{loginErrMsg}}</p>
               </form>
             </div>
           </div>
