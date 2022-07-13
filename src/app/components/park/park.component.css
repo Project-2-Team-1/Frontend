@@ -1,0 +1,26 @@
+.w-800 {
+    max-width: 800px;
+}
+
+.btn {
+    font: inherit;
+    border: 1px solid #043419;
+    background: #072f11;
+    color: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+    cursor: pointer;
+}
+
+.card-header {
+    color: #072f11;
+    background-color: rgb(169, 191, 169);
+}
+
+#img-carousel {
+    max-width: 1440px;
+}
+
+#park-root {
+    background-color: whitesmoke;
+}
