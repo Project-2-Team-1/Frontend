@@ -1,12 +1,12 @@
 <div class="welcome-heading align-self-center" id="welcome-user-home">
-    <h1><strong>Welcome {{ this.appComponent.username }}!</strong></h1>
+    <h1><strong>Welcome {{ authService.currentUser() }}!</strong></h1>
 </div>
 <br>
 <div class="park-list" *ngIf="userService.getMyParks.length > 0">
   <label for="park-list" class="list-label"><strong>My Parks</strong></label>
 
     <!--Rendered based upon which parks the user likes/saves-->
-    
+
     <ul class="my-park-list">
       <dashboard></dashboard>
     </ul>
@@ -14,9 +14,9 @@
 <br>
 <div class="review-list" *ngIf="userService.getMyReviews.length > 0">
   <label for="review-list" class="list-label"><strong>My Reviews</strong></label>
-  
+
     <!--Rendered based upon user's reviews-->
-    
-    <ul class="my-review-list">  
-      <dashboard></dashboard>    
+
+    <ul class="my-review-list">
+      <dashboard></dashboard>
     </ul>

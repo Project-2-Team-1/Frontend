@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { url } from 'src/environments/environment';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {url} from 'src/environments/environment';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,8 @@ export class AuthService {
   };
 
   loginUrl = url + '/login'; // http://localhost:5000/api/login
+
+
 
   constructor(private http: HttpClient) {}
 
@@ -28,5 +31,30 @@ export class AuthService {
     // alternatively add .pipe() to return any errors
 
     // create a custom error method
+  }
+
+  isLoggedIn(){
+    let jwtHelper = new JwtHelperService();
+    let token = sessionStorage.getItem('token');
+
+    if(!token)
+      return false;
+
+    let isExpired = jwtHelper.isTokenExpired(token);
+
+    return !isExpired;
+  }
+
+  logout(){
+    sessionStorage.removeItem('token');
+
+  }
+
+  currentUser(){
+    let token = sessionStorage.getItem('token');
+    if (!token) return null;
+
+    let jwtHelper = new JwtHelperService();
+    return jwtHelper.decodeToken(token).sub;
   }
 }

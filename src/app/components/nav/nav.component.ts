@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -6,16 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  public isLoggedIn: boolean = false;
-  constructor() { }
+
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  signOut(): void {
-    window.location.reload();
-    // this.isLoggedIn = false;
-    // NgRx is state mgmt for Angular
-  }
 
 }
