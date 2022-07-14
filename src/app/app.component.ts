@@ -1,6 +1,7 @@
 import { identifierName } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { User } from './models/user';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +11,7 @@ import { User } from './models/user';
 export class AppComponent {
   title = 'JACL Adventure Finder';
 
-    // make it public so other components (like our login component can toggle this property)
-    public isLoggedIn: boolean = false;
 
-    username: string = '';
-  
-    // update the username (user info) based on whoever is stored in the session
-    updateUserData(username: string): void {
-      this.username = username;
-    }
-  
-    // flush the browser's session
-    signOut(): void {
-      window.location.reload();
-      // this.isLoggedIn = false;
-      // NgRx is state mgmt for Angular
-    }
- 
+
+
 }

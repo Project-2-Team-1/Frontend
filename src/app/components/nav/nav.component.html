@@ -4,23 +4,24 @@
   aria-label="Fourth navbar example"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/dashboard">JACL Adventure Finder Home</a>
+    <a class="navbar-brand">JACL Adventure Finder</a>
     <div class="col-xs-3 text-right">
-      <button *ngIf="!isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/login">
+      <button *ngIf="!authService.isLoggedIn()" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/login">
         Login
       </button>
-      <button *ngIf="!isLoggedIn" type="button" class="btn btn-sm btn-light btn-width" routerLink="/register">
+      <button *ngIf="!authService.isLoggedIn()" type="button" class="btn btn-sm btn-light btn-width" routerLink="/register">
         Register
       </button>
 
-      <button *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/park">
+      <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/park">
         Parks
       </button>
 
-      <button *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/user-info">
+      <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/user-info">
         Update My Info
       </button>
-      <button (click)="signOut()" *ngIf="isLoggedIn" type="button" class="btn btn-sm btn-light btn-space btn-width">Logout</button>
+
+      <button (click)="authService.logout()" *ngIf="authService.isLoggedIn()" type="button" class="btn btn-sm btn-light btn-space btn-width">Logout</button>
 
     </div>
   </div>

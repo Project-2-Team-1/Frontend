@@ -2,6 +2,7 @@ import { UserService } from 'src/app/service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AppComponent } from 'src/app/app.component';
+import { AuthService } from 'src/app/service/auth.service';
 
 
 @Component({
@@ -14,14 +15,14 @@ export class UserComponent implements OnInit {
   UserService: any;
   User: any;
 
-  constructor(public userService: UserService, public appComponent: AppComponent, public user: UserComponent) { }
+  constructor(public userService: UserService, public authService: AuthService, public user: UserComponent) { }
 
-  userData(): any{      
+  userData(): any{
     (response: any) => {
     const token = response.headers.get('adventure-token');
-    sessionStorage.setItem('token', token);      
+    sessionStorage.setItem('token', token);
     return response.body.id;
-    } 
+    }
 }
 
   ngOnInit(): void {
