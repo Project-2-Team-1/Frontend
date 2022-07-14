@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class AppComponent {
   title = 'JACL Adventure Finder';
-
+constructor(public authService: AuthService){}
 
 
 
