@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
@@ -18,7 +19,7 @@ export class AuthService {
 
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string): Observable<any> {
 
@@ -47,7 +48,7 @@ export class AuthService {
 
   logout(){
     sessionStorage.removeItem('token');
-
+    this.router.navigate(["/"]);
   }
 
   currentUser(){
