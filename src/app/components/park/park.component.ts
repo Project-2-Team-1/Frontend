@@ -96,15 +96,17 @@ export class ParkComponent implements OnInit {
       }
       this.reviewService.uploadReview(body)
         .subscribe((response) => {
-          console.log(response);
           let result = this.reviews.filter((r: any) => r.id === response.id);
           if(result.length === 0 && response.content.trim()) {
-            this.reviews.push(response);
+            let review: any = { ...response }
+            review.date = new Date(response.dateReviewed);
+            this.reviews.push(review);
           } else {
             let i = this.reviews.indexOf(result[0]);
             this.reviews[i].content = response.content;
             this.reviews[i].rating = response.rating;
             this.reviews[i].dateReviewed = response.dateReviewed;
+            this.reviews[i].date = new Date(response.dateReviewed);
           }
           this.reviewId = response.id;
         })
