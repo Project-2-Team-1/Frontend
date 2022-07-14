@@ -29,7 +29,7 @@ import { UpdateInfoComponent } from './components/update-info/update-info.compon
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ParkComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

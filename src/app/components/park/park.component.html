@@ -1,1 +1,90 @@
-<p>park works!</p>
+<div id="park-root">
+    <div *ngIf="!park.fullName" class="pt-5">
+        <p class="text-center">Oops! No park here! <br> <a routerLink="/search">Would you like to search for a park?</a></p>
+    </div>
+
+    <div *ngIf="park.fullName" class="py-5 mx-auto" style="max-width: 1440px;">
+
+        <h2 class="text-center">{{park.fullName}}</h2>
+        <h6 class="text-center">{{overallRating ? overallRating.toFixed(2) + " stars (" + numRatings + " ratings)" : "This park has not been rated yet!"}}</h6>
+        
+        <div id="img-carousel" class="carousel slide mt-5 mx-auto" data-bs-ride="carousel" *ngIf="park.images.length > 0">
+            <div class="carousel-inner">
+                <div *ngFor="let img of park.images" class="carousel-item {{park.images.indexOf(img) ? '' : 'active'}}"
+                    style="background-image: url({{img.url}}); height: 800px; background-size: cover;"
+                >
+                    <span role="img" [attr.aria-label]="img.altText"></span>
+                    <!-- <img src="{{img.url}}" class="d-block w-100 img-fluid" alt="{{img.altText}}" style="height: 800px;"> -->
+                    <div class="carousel-caption p-3 rounded" style="background-color: rgba(0, 0, 0, 0.5);">
+                        <h5>{{img.title}}</h5>
+                        <p>{{img.caption}}</p>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#img-carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#img-carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        
+        <p class="w-800 mt-5 mx-auto">
+            {{park.description}}
+        </p>
+        <p class="w-800 mx-auto">
+            {{park.weatherInfo}}
+        </p>
+        <p class="text-center mt-5">
+            For more information and alerts, visit the <a href="{{park.url}}">National Park Services website.</a>
+        </p>
+
+        <div id="reviews-container" class="mt-5 mx-auto card w-800">
+            
+            <h3 class="card-header card-title">Reviews for {{park.name}}</h3>
+            <div class="card-body">
+                <ul class="list-unstyled" >
+                    <li *ngFor="let r of reviews" >
+                        <div *ngIf="r.rating && r.content">
+                            <h5>Rated {{r.rating}} stars by {{r.user.username}}</h5>
+                            <h6>{{r.dateReviewed}}</h6>
+                            <p>{{r.content}}</p>
+                            <hr>
+                        </div>
+                    </li>
+                </ul>
+                <p *ngIf="!reviews.length" class="text-center">
+                    No reviews for {{park.name}} yet!
+                </p>
+            </div>
+
+            <button class="btn btn-primary mb-4 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
+
+            <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Write a Review</h5>
+                    <button id="modal-close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form (ngSubmit)="submitReview()">
+                        <div class="modal-body">
+                            <label for="rating">Rating</label>
+                            <input [(ngModel)]="rating" class="form-control" type="number" name="rating" min="1" max="5">
+                            <label for="content">Review</label>
+                            <textarea [(ngModel)]="content" name="content" class="form-control" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
