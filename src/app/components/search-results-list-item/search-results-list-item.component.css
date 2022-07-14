@@ -1,0 +1,18 @@
+span {
+    color: white;
+    background-color: black;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+}
+
+a:hover span {
+    color: rgb(169, 191, 169);
+}
+
+li:hover {
+    opacity: 1;
+}
+
+a {
+    text-decoration: none;
+}
