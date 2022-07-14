@@ -5,9 +5,12 @@
 
     <div *ngIf="park.fullName" class="py-5 mx-auto" style="max-width: 1440px;">
 
-        <h2 class="text-center">{{park.fullName}}</h2>
-        <h6 class="text-center">{{overallRating ? overallRating.toFixed(2) + " stars (" + numRatings + " ratings)" : "This park has not been rated yet!"}}</h6>
-        
+        <header>
+            <h2 class="text-center">{{park.fullName}}</h2>
+            <h6 class="text-center">{{overallRating ? overallRating.toFixed(2) + " stars (" + numRatings + " ratings)" : "This park has not been rated yet!"}}</h6>
+            <button *ngIf="authService.isLoggedIn()" id="add-park" class="btn btn-primary d-block mx-auto {{reviewed ? 'disabled' : ''}}" (click)="addPark()">{{reviewed ? "Added" : "Add this park"}}</button>
+        </header>
+                
         <div id="img-carousel" class="carousel slide mt-5 mx-auto" data-bs-ride="carousel" *ngIf="park.images.length > 0">
             <div class="carousel-inner">
                 <div *ngFor="let img of park.images" class="carousel-item {{park.images.indexOf(img) ? '' : 'active'}}"
@@ -60,7 +63,7 @@
                 </p>
             </div>
 
-            <button class="btn btn-primary mb-4 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
+            <button *ngIf="authService.isLoggedIn()" class="btn btn-primary mb-4 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
 
             <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

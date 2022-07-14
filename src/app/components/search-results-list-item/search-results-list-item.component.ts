@@ -19,14 +19,13 @@ export class SearchResultsListItemComponent implements OnInit {
   ngOnInit(): void {
     // this.dataService.user = USER_PLACEHOLDER; // For testing
     this.user = { ...this.dataService.user };
-    console.log(this.user);
-    let res = this.user.reviews.filter((r: any) => r.parkCode === this.park.parkCode);
-    if(res.length > 0) {
-      console.log(res);
-      this.saved = true;
-      this.myRating = res[0].rating;
+    if(this.user.reviews) {
+      let res = this.user.reviews.filter((r: any) => r.parkCode === this.park.parkCode);
+      if(res.length > 0) {
+        this.saved = true;
+        this.myRating = res[0].rating;
+      }
     }
-    console.log(this.user.reviews);
   }
 
   save() {

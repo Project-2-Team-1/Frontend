@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { placeholder } from './placeholder';
 import { DataService } from './../../service/data.service';
 import { ReviewService } from './../../service/review.service';
@@ -23,7 +24,7 @@ export class ParkComponent implements OnInit {
   reviewId: number | null = null;
 
 
-  constructor(private reviewService: ReviewService, private dataService: DataService) { }
+  constructor(private reviewService: ReviewService, private dataService: DataService, public authService: AuthService) { }
 
   ngOnInit(): void {
     // this.dataService.park = placeholder.data[0]; // Remove this line for actual use - testing purposes only
@@ -63,9 +64,24 @@ export class ParkComponent implements OnInit {
     });
   }
 
+  addPark() {
+    let body = {
+      parkCode: this.park.parkCode,
+      user: {
+        id: this.user.id
+      }
+    }
+    this.reviewService.uploadReview(body)
+        .subscribe((response) => {
+          console.log(response);
+          document.getElementById("add-park")?.setAttribute("disabled", "true");
+          this.reviewed = true;
+        })
+  }
+ 
   submitReview() {
     console.log("clicked")
-    if(this.content.trim() && this.rating){
+    if(this.rating){
       let body: any = {
         rating: this.rating,
         content: this.content,
@@ -82,7 +98,7 @@ export class ParkComponent implements OnInit {
         .subscribe((response) => {
           console.log(response);
           let result = this.reviews.filter((r: any) => r.id === response.id);
-          if(result.length === 0) {
+          if(result.length === 0 && response.content.trim()) {
             this.reviews.push(response);
           } else {
             let i = this.reviews.indexOf(result[0]);
