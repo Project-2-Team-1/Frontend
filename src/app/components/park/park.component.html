@@ -49,7 +49,7 @@
                     <li *ngFor="let r of reviews" >
                         <div *ngIf="r.rating && r.content">
                             <h5>Rated {{r.rating}} stars by {{r.user.username}}</h5>
-                            <h6>{{r.dateReviewed}}</h6>
+                            <h6>Reviewed {{r.date.toDateString()}}</h6>
                             <p>{{r.content}}</p>
                             <hr>
                         </div>
@@ -74,7 +74,7 @@
                             <label for="rating">Rating</label>
                             <input [(ngModel)]="rating" class="form-control" type="number" name="rating" min="1" max="5">
                             <label for="content">Review</label>
-                            <textarea [(ngModel)]="content" name="content" class="form-control" required></textarea>
+                            <textarea [(ngModel)]="content" name="content" class="form-control" required>{{content}}</textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
