@@ -1,27 +1,32 @@
 .btn-space {
-    margin-right: 20px;
-  }
-  .btn-width{
-    width: 75px !important;
-  }
-  .navbar{
-    background-color: rgb(169, 191, 169);
-  }
+  margin-right: 20px;
+}
+.btn-width{
+  width: 75px !important;
+}
+.card-header{
+  color: white;
+  background-color: rgb(169, 191, 169);
+}
 
-  .btn {
-    font: inherit;
-    border: 1px solid #043419;
-    background: #072f11;
-    color: white;
-    border-radius: 6px;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
-    cursor: pointer;
-  }
+.btn {
+  font: inherit;
+  border: 1px solid #043419;
+  background: #072f11;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+}
 
-  .welcome-header {
-    font: inherit;
-    color:rgb(169, 191, 169);
-    text-align: center;
-    background-origin: padding-box;
-    box-shadow: inset;
-  }
+.welcome-header {
+  font: inherit;
+  text-align: center;
+  background-origin: padding-box;
+  box-shadow: inset;
+}
+
+.park-list {
+  max-width: 800px;
+}
+
