@@ -14,7 +14,7 @@ export class UserComponent implements OnInit {
   UserService: any;
   User: any;
 
-  constructor(public userService: UserService, public appComponent: AppComponent, public user: UserComponent) { }
+  constructor(public userService: UserService, public appComponent: AppComponent) { }
 
   userData(): any{      
     (response: any) => {
