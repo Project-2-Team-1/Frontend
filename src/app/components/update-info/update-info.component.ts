@@ -18,8 +18,8 @@ export class UpdateInfoComponent implements OnInit {
   clientMessage: ClientMessage = new ClientMessage('');
  
   constructor(private userService: UserService, private user: User, private authService: AuthService) { }
-  username = this.authService.currentUser()
-  currentUser: any = this.userService.findUserByUsername(this.username)
+  id = this.authService.currentUser()
+  currentUser: any = this.userService.findUserById(this.id)
 
   updateUserInfo(){
     this.userService.updateUser(this.currentUser)
