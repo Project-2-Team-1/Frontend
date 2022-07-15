@@ -31,14 +31,20 @@ export class UpdateInfoComponent implements OnInit {
     if(!this.authService.isLoggedIn()){
       this.router.navigate(["/login"]);
     }
-    this.userService.updateUser(this.currentUser)
-    .subscribe(
-      data =>{
-        this.user = data;
-        this.clientMessage.message = ''
+    if(!this.authService.currentUserId()){
+      this.userService.updateUser(this.currentUser)
+       .subscribe(
+         data =>{
+          this.authService.currentUserId() = data;
+          this.u
+      }else{
       }
       
+      
     )
+
+
+  }
   }
 
    
