@@ -1,3 +1,5 @@
+import { UserService } from './../../service/user.service';
+import { ParkService } from './../../service/park.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { placeholder } from './placeholder';
 import { DataService } from './../../service/data.service';
@@ -19,21 +21,73 @@ export class ParkComponent implements OnInit {
   content: string = "";
   rating: number = 0;
   numRatings: number = 0;
-  user: any;
+  user: any = {
+
+  };
   reviewed: boolean = false;
   reviewId: number | null = null;
+  loading: boolean = true;
 
 
-  constructor(private reviewService: ReviewService, private dataService: DataService, public authService: AuthService) { }
+  constructor(
+    private userService: UserService,
+    private reviewService: ReviewService,
+    private parkService: ParkService, 
+    private dataService: DataService, 
+    public authService: AuthService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     // this.dataService.park = placeholder.data[0]; // Remove this line for actual use - testing purposes only
     let temp = this.dataService.park;
-    this.user = this.dataService.user;
     if(!temp?.parkCode){
+      let parkCode = sessionStorage.getItem("park");
+      if(parkCode?.length === 4) {
+        await this.parkService.getParkByParkCode(parkCode)
+          .subscribe(result => {
+            this.park = result.data[0];
+            this.checkUser();
+          })
+      }
       return;
+    } else {
+      this.park = temp;
+      this.checkUser();
     }
-    this.park = temp;
+    
+  }
+
+  addPark() {
+    let body = {
+      parkCode: this.park.parkCode,
+      user: {
+        id: this.user.id
+      }
+    }
+    this.reviewService.uploadReview(body)
+        .subscribe((response) => {
+          console.log(response);
+          document.getElementById("add-park")?.setAttribute("disabled", "true");
+          this.reviewed = true;
+        })
+  }
+
+  checkUser() {
+    if(!this.dataService.user) {
+      this.userService.findUserById(this.authService.currentUserId())
+        .subscribe((response) => {
+          this.dataService.user = response;
+          this.user = this.dataService.user;
+          while(!this.park){
+          }
+          this.checkReviews();
+        });
+    } else {
+      this.user = this.dataService.user;
+      this.checkReviews();
+    }
+  }
+
+  checkReviews() {
     this.reviewService.findReviewsByParkCode(this.park.parkCode).subscribe(response => {
       this.reviews = response.filter((r) => {
         return r.content != ""
@@ -61,22 +115,8 @@ export class ParkComponent implements OnInit {
         this.content = review.content;
         this.reviewId = review.id;
       }
+      this.loading = false;
     });
-  }
-
-  addPark() {
-    let body = {
-      parkCode: this.park.parkCode,
-      user: {
-        id: this.user.id
-      }
-    }
-    this.reviewService.uploadReview(body)
-        .subscribe((response) => {
-          console.log(response);
-          document.getElementById("add-park")?.setAttribute("disabled", "true");
-          this.reviewed = true;
-        })
   }
  
   submitReview() {
