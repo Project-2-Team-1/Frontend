@@ -37,7 +37,7 @@ export class UpdateInfoComponent implements OnInit {
         this.user = data;
         this.clientMessage.message = ''
       }
-      () => this.clientMessage.message =`Can't Update User Information`
+      
     )
   }
 

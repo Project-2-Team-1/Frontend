@@ -40,25 +40,27 @@ export class UserComponent implements OnInit {
         .subscribe((response) => {
           this.dataService.user = response;
           this.user = this.dataService.user; // For live
-          let codes = [];
-          for(let r of this.user.reviews) {
-            codes.push(r.parkCode);
-          }
-          this.parkService.getParksByParkCode(codes)
-            .subscribe((result) => {
-              this.parks = result.data;
-            });
+          this.getSavedParks();
         });
     } else {
       this.user = this.dataService.user; // For live
-      let codes = [];
-      for(let r of this.user.reviews) {
-        codes.push(r.parkCode);
-      }
+      this.getSavedParks();
+    }
+  }
+
+  private getSavedParks() {
+    let codes = [];
+    for(let r of this.user.reviews) {
+      codes.push(r.parkCode);
+    }
+    try {
       this.parkService.getParksByParkCode(codes)
         .subscribe((result) => {
           this.parks = result.data;
         });
+    } catch (e: any) {
+      this.parks = [];
     }
+    
   }
 }

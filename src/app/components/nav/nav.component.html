@@ -13,8 +13,12 @@
         Register
       </button>
 
-      <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/park">
-        Parks
+      <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/search">
+        Search Parks
+      </button>
+
+      <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/dashboard">
+        My Parks
       </button>
 
       <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-sm btn-light btn-space btn-width" routerLink="/update-info">
