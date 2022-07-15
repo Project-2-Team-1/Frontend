@@ -9,7 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { ParkComponent } from './components/park/park.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchResultsListItemComponent } from './components/search-results-list-item/search-results-list-item.component';
 import { HomeComponent } from './components/home/home.component';
 import { UpdateInfoComponent } from './components/update-info/update-info.component';
@@ -27,7 +27,8 @@ import { UpdateInfoComponent } from './components/update-info/update-info.compon
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ParkComponent],
   bootstrap: [AppComponent]

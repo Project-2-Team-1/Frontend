@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-search-results',
+  selector: 'search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.css']
 })

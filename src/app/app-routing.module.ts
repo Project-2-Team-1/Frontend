@@ -1,3 +1,4 @@
+import { SearchResultsListItemComponent } from './components/search-results-list-item/search-results-list-item.component';
 import { UpdateInfoComponent } from './components/update-info/update-info.component';
 import { HomeComponent } from './components/home/home.component';
 import { ParkComponent } from './components/park/park.component';
@@ -15,7 +16,10 @@ const routes: Routes = [
   {path: "dashboard", component: UserComponent},
   {path: "park", component: ParkComponent},
   {path: "update-info", component: UpdateInfoComponent},
-  {path: "home", component: HomeComponent}
+  {path: "home", component: HomeComponent},
+  {path: "search-results-list-item", component: SearchResultsListItemComponent},
+  {path: "search-results", component: SearchResultsComponent},
+  {path: '', redirectTo: '/home', pathMatch:'full'}
   
  ];
 
@@ -31,6 +35,8 @@ export const routingComponents = [
   ParkComponent,
   UserComponent,
   UpdateInfoComponent,
-  HomeComponent
+  HomeComponent,
+  SearchResultsComponent,
+  SearchResultsListItemComponent
   
 ];
