@@ -49,13 +49,6 @@ export class AuthService {
     this.router.navigate(["/"]);
   }
 
-  currentUserId(){
-    let token = sessionStorage.getItem('token');
-    if (!token) return null;
-
-    let jwtHelper = new JwtHelperService();
-    return jwtHelper.decodeToken(token).id;
-  }
 
   currentUserId(): number {
     let token = sessionStorage.getItem("token");

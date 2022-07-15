@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/service/auth.service';
 import { NgIf } from '@angular/common';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'update-info',
@@ -17,23 +18,28 @@ export class UpdateInfoComponent implements OnInit {
   title = 'Update User Information:'
   clientMessage: ClientMessage = new ClientMessage('');
  
-  constructor(private userService: UserService, private user: User, private authService: AuthService) { }
+  constructor(
+    private userService: UserService, 
+    private user: User,
+    private authService: AuthService,
+     private router: Router) { }
+     
   id = this.authService.currentUserId()
   currentUser: any = this.userService.findUserById(this.id)
 
   ngOnInit(): void{
-    this.userService.updateUser(this.currentUser);
-  }
-
-    updateUserInfo(){
+    if(!this.authService.isLoggedIn()){
+      this.router.navigate(["/login"]);
+    }
     this.userService.updateUser(this.currentUser)
     .subscribe(
       data =>{
         this.user = data;
         this.clientMessage.message = ''
-      },
+      }
       () => this.clientMessage.message =`Can't Update User Information`
     )
   }
 
+   
 }
