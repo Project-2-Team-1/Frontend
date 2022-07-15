@@ -1,3 +1,5 @@
+import { UserService } from './../../service/user.service';
+import { AuthService } from 'src/app/service/auth.service';
 import { USER_PLACEHOLDER } from './../user/placeholder';
 import { DataService } from './../../service/data.service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -14,12 +16,31 @@ export class SearchResultsListItemComponent implements OnInit {
   myRating: number = 0;
   user: any;
 
-  constructor(public dataService: DataService) { }
+  constructor(
+    private authService: AuthService, 
+    public dataService: DataService,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     // this.dataService.user = USER_PLACEHOLDER; // For testing
-    this.user = this.dataService.user;
-    if(this.user.reviews) {
+    if(!this.dataService.user){
+      if(this.authService.isLoggedIn()) {
+        this.userService.findUserById(this.authService.currentUserId())
+          .subscribe(result => {
+            this.dataService.user = result;
+            this.user = this.dataService.user;
+            this.getRating();
+          })
+      }
+    }else {
+      this.user = this.dataService.user;
+      this.getRating();
+    }
+  }
+
+  private getRating() {
+    if(this.user.reviews.length > 0) {
       let res = this.user.reviews.filter((r: any) => r.parkCode === this.park.parkCode);
       if(res.length > 0) {
         this.saved = true;
