@@ -1,3 +1,4 @@
+import { UserService } from './../../service/user.service';
 import { USER_PLACEHOLDER } from './placeholder';
 import { DataService } from './../../service/data.service';
 import { Router } from '@angular/router';
@@ -17,7 +18,13 @@ export class UserComponent implements OnInit {
   user: any;
   parks: any[] = [];
 
-  constructor(private authService: AuthService, private dataService: DataService, private parkService: ParkService, private router: Router) { }
+  constructor(
+    private authService: AuthService, 
+    private dataService: DataService, 
+    private parkService: ParkService,
+    private userService: UserService, 
+    private router: Router
+  ) { }
 
   userData(): any{      
     
@@ -28,18 +35,30 @@ export class UserComponent implements OnInit {
     if(!this.authService.isLoggedIn()){
       this.router.navigate(["/login"]);
     }
-    this.user = this.dataService.user; // For live
-    let codes = [];
-    console.log(this.user.reviews);
-    for(let r of this.user.reviews) {
-      codes.push(r.parkCode);
+    if(!this.dataService.user) {
+      this.userService.findUserById(this.authService.currentUserId())
+        .subscribe((response) => {
+          this.dataService.user = response;
+          this.user = this.dataService.user; // For live
+          let codes = [];
+          for(let r of this.user.reviews) {
+            codes.push(r.parkCode);
+          }
+          this.parkService.getParksByParkCode(codes)
+            .subscribe((result) => {
+              this.parks = result.data;
+            });
+        });
+    } else {
+      this.user = this.dataService.user; // For live
+      let codes = [];
+      for(let r of this.user.reviews) {
+        codes.push(r.parkCode);
+      }
+      this.parkService.getParksByParkCode(codes)
+        .subscribe((result) => {
+          this.parks = result.data;
+        });
     }
-    console.log(codes);
-    this.parkService.getParksByParkCode(codes)
-      .subscribe((result) => {
-        console.log(result);
-        this.parks = result.data;
-      });
   }
-
 }
