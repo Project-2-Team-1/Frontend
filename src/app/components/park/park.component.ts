@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { placeholder } from './placeholder';
 import { DataService } from './../../service/data.service';
 import { ReviewService } from './../../service/review.service';
@@ -18,14 +19,17 @@ export class ParkComponent implements OnInit {
   content: string = "";
   rating: number = 0;
   numRatings: number = 0;
+  user: any;
+  reviewed: boolean = false;
+  reviewId: number | null = null;
 
 
-  constructor(private reviewService: ReviewService, private dataService: DataService) { }
+  constructor(private reviewService: ReviewService, private dataService: DataService, public authService: AuthService) { }
 
   ngOnInit(): void {
     // this.dataService.park = placeholder.data[0]; // Remove this line for actual use - testing purposes only
-    console.log(this.dataService.park)
     let temp = this.dataService.park;
+    this.user = this.dataService.user;
     if(!temp?.parkCode){
       return;
     }
@@ -33,6 +37,11 @@ export class ParkComponent implements OnInit {
     this.reviewService.findReviewsByParkCode(this.park.parkCode).subscribe(response => {
       this.reviews = response.filter((r) => {
         return r.content != ""
+      });
+      this.reviews.forEach((r: any) => {
+        let date = new Date(r.dateReviewed);
+        r.date = date;
+        return r;
       });
       let sum = 0;
       let length = 0;
@@ -44,24 +53,62 @@ export class ParkComponent implements OnInit {
       }
       this.overallRating = sum / length;
       this.numRatings = length;
+      let result = this.user.reviews.filter((r: any) => r.parkCode === this.park.parkCode);
+      if(result.length > 0) {
+        this.reviewed = true;
+        let review = result[0];
+        this.rating = review.rating;
+        this.content = review.content;
+        this.reviewId = review.id;
+      }
     });
   }
 
+  addPark() {
+    let body = {
+      parkCode: this.park.parkCode,
+      user: {
+        id: this.user.id
+      }
+    }
+    this.reviewService.uploadReview(body)
+        .subscribe((response) => {
+          console.log(response);
+          document.getElementById("add-park")?.setAttribute("disabled", "true");
+          this.reviewed = true;
+        })
+  }
+ 
   submitReview() {
     console.log("clicked")
-    if(this.content.trim() && this.rating){
-      let body = {
+    if(this.rating){
+      let body: any = {
         rating: this.rating,
         content: this.content,
         parkCode: this.park.parkCode,
+        dateReviewed: Date.now(),
         user: {
-          id: 1 // TODO: Replace with dynamic value of logged in user
+          id: this.user.id
         }
+      }
+      if(this.reviewed){
+        body.id = this.reviewId;
       }
       this.reviewService.uploadReview(body)
         .subscribe((response) => {
-          console.log(response);
-          this.reviews.push(response);
+          let result = this.reviews.filter((r: any) => r.id === response.id);
+          if(result.length === 0 && response.content.trim()) {
+            let review: any = { ...response }
+            review.date = new Date(response.dateReviewed);
+            this.reviews.push(review);
+          } else {
+            let i = this.reviews.indexOf(result[0]);
+            this.reviews[i].content = response.content;
+            this.reviews[i].rating = response.rating;
+            this.reviews[i].dateReviewed = response.dateReviewed;
+            this.reviews[i].date = new Date(response.dateReviewed);
+          }
+          this.reviewId = response.id;
         })
       document.getElementById("modal-close")?.click();
       this.rating = 0;

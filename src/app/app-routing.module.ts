@@ -15,8 +15,8 @@ const routes: Routes = [
   {path: "dashboard", component: UserComponent},
   {path: "park", component: ParkComponent},
   {path: "update-info", component: UpdateInfoComponent},
-  {path: "home", component: HomeComponent}
-  
+  {path: "", component: HomeComponent},
+  {path: "**", redirectTo: ""}
  ];
 
 @NgModule({

@@ -5,4 +5,5 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
   public park: any;
+  public user: any;
 }
