@@ -1,17 +1,21 @@
-<div class="welcome-header align-self-center" id="welcome-user-home">
-  <h1 class="display-1">Welcome, {{ user.username }}!</h1>
-</div>
-<br>
-<div class="park-list card mx-auto">
-  <h2 class="display-5 card-header">Saved Parks</h2>
-  <!--Rendered based upon which parks the user likes/saves-->
-  <div class="card-body">
-    <ul class="my-park-list list-group">
-      <app-search-results-list-item *ngFor="let p of parks"
+<div id="user-root">
+  <div class="welcome-header align-self-center p-5" id="welcome-user-home">
+    <h1 class="display-1">Welcome, {{ user.username }}!</h1>
+  </div>
+  <br>
+  <div class="park-list card mx-auto">
+    <h2 class="display-5 card-header">Saved Parks</h2>
+    <!--Rendered based upon which parks the user likes/saves-->
+    <div class="my-park-list card-body row align-items-end p-2">
+      <app-search-results-list-item 
+        class="col-lg-6 col-xxl-4 mt-3"
+        *ngFor="let p of parks"
         [park]="p"
       >
       </app-search-results-list-item>
-    </ul>
+      <p *ngIf="parks.length == 0" class="text-center p-5">
+        No parks saved yet! <a href="/search">Search for one</a>
+      </p>
+    </div>
   </div>
-  
 </div>

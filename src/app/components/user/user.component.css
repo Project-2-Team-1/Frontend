@@ -27,6 +27,9 @@
 }
 
 .park-list {
-  max-width: 800px;
+  max-width: 1600px;
 }
 
+#welcome-user-home {
+  background-color: whitesmoke;
+}
