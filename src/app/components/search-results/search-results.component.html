@@ -74,12 +74,12 @@
             <p class="text-center p-5" *ngIf="parks.length == 0">
                 Use the form above to search for parks!
             </p>
-            <ul class="list-group">
+            <div class="list-group">
                 <app-search-results-list-item *ngFor="let p of parks"
                     [park]=p 
                 >
                 </app-search-results-list-item>
-            </ul>
+            </div>
         </div>
     </div>
 </div>

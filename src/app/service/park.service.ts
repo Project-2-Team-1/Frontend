@@ -17,9 +17,13 @@ export class ParkService {
   }
 
   getParksByParkCode(codes: string[]): Observable<any> {
-    let codesString = codes.toString();
-    console.log(codesString);
-    return this.http.get(`${PARKS_URL}?parkCode=${codesString}&api_key=${API_KEY}`)
+    if(codes.length > 0) {
+      let codesString = codes.toString();
+      console.log(codesString);
+      return this.http.get(`${PARKS_URL}?parkCode=${codesString}&api_key=${API_KEY}`)
+    } else {
+      throw new Error("Must pass at least one parkCode")
+    }
   }
 
   searchParksByQuery(query: string): Observable<any> {
