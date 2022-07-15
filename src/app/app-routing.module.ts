@@ -19,8 +19,10 @@ const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "search-results-list-item", component: SearchResultsListItemComponent},
   {path: "search-results", component: SearchResultsComponent},
-  {path: '', redirectTo: '/home', pathMatch:'full'}
+  {path: '', redirectTo: '/home', pathMatch:'full'},
   
+  {path: "", component: HomeComponent},
+  {path: "**", redirectTo: ""}
  ];
 
 @NgModule({

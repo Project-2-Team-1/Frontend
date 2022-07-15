@@ -5,9 +5,12 @@
 
     <div *ngIf="park.fullName" class="py-5 mx-auto" style="max-width: 1440px;">
 
-        <h2 class="text-center">{{park.fullName}}</h2>
-        <h6 class="text-center">{{overallRating ? overallRating.toFixed(2) + " stars (" + numRatings + " ratings)" : "This park has not been rated yet!"}}</h6>
-        
+        <header>
+            <h2 class="text-center">{{park.fullName}}</h2>
+            <h6 class="text-center">{{overallRating ? overallRating.toFixed(2) + " stars (" + numRatings + " ratings)" : "This park has not been rated yet!"}}</h6>
+            <button *ngIf="authService.isLoggedIn()" id="add-park" class="btn btn-primary d-block mx-auto {{reviewed ? 'disabled' : ''}}" (click)="addPark()">{{reviewed ? "Added" : "Add this park"}}</button>
+        </header>
+                
         <div id="img-carousel" class="carousel slide mt-5 mx-auto" data-bs-ride="carousel" *ngIf="park.images.length > 0">
             <div class="carousel-inner">
                 <div *ngFor="let img of park.images" class="carousel-item {{park.images.indexOf(img) ? '' : 'active'}}"
@@ -49,7 +52,7 @@
                     <li *ngFor="let r of reviews" >
                         <div *ngIf="r.rating && r.content">
                             <h5>Rated {{r.rating}} stars by {{r.user.username}}</h5>
-                            <h6>{{r.dateReviewed}}</h6>
+                            <h6>Reviewed {{r.date.toDateString()}}</h6>
                             <p>{{r.content}}</p>
                             <hr>
                         </div>
@@ -60,7 +63,7 @@
                 </p>
             </div>
 
-            <button class="btn btn-primary mb-4 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
+            <button *ngIf="authService.isLoggedIn()" class="btn btn-primary mb-4 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
 
             <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -74,7 +77,7 @@
                             <label for="rating">Rating</label>
                             <input [(ngModel)]="rating" class="form-control" type="number" name="rating" min="1" max="5">
                             <label for="content">Review</label>
-                            <textarea [(ngModel)]="content" name="content" class="form-control" required></textarea>
+                            <textarea [(ngModel)]="content" name="content" class="form-control" required>{{content}}</textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

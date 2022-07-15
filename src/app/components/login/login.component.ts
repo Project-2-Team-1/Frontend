@@ -1,7 +1,8 @@
+import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { AuthService } from 'src/app/service/auth.service';
-import {Router} from "@angular/router";
+import {Data, Router} from "@angular/router";
 
 @Component({
   selector: 'login',
@@ -16,7 +17,7 @@ export class LoginComponent  {
   loginErrMsg: string = '';
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private dataService: DataService, private router: Router) { }
 
   // pass thru the username & string from the tempalte, and
   // call the auth service
@@ -41,7 +42,8 @@ export class LoginComponent  {
 
           // useing the browser's session to store session info
           sessionStorage.setItem('token', token);
-
+          console.log(response);
+          this.dataService.user = response.body;
           // here I'm setting the username property of the user object
           // that we recieved back in the body of the response.
           this.router.navigate(['/dashboard'])

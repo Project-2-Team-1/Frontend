@@ -16,6 +16,12 @@ export class ParkService {
     return this.http.get(`${PARKS_URL}?parkCode=${code}&api_key=${API_KEY}`)
   }
 
+  getParksByParkCode(codes: string[]): Observable<any> {
+    let codesString = codes.toString();
+    console.log(codesString);
+    return this.http.get(`${PARKS_URL}?parkCode=${codesString}&api_key=${API_KEY}`)
+  }
+
   searchParksByQuery(query: string): Observable<any> {
     return this.http.get(`${PARKS_URL}?q=${query}&api_key=${API_KEY}`)
       .pipe(catchError(this.handleError));

@@ -22,5 +22,6 @@
 }
 
 #park-root {
+    min-height: 100vh;
     background-color: whitesmoke;
 }
