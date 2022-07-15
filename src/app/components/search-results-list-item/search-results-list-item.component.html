@@ -1,9 +1,15 @@
 <li class="list-group-item list-group-item-action"
     style="background-image: url({{park.images[0].url}}); background-size: cover; background-position: center; opacity: 0.75;"
 >
-    <a (click)="dataService.park = park" routerLink="/park" class="d-flex justify-content-between">
-        <span>{{park.name}}</span>
-        <span *ngIf="myRating > 0">You rated {{myRating}} stars</span>
-        <span *ngIf="saved">Saved!</span>
+    <a (click)="clickHandler()" routerLink="/park" class="row">
+        <div class="col">
+            <span >{{park.name}}</span>
+        </div>
+        <div class="col">
+            <span *ngIf="myRating > 0">You rated {{myRating}} stars</span>
+        </div>
+        <div class="col">
+            <span class="float-end" *ngIf="saved">Saved!</span>
+        </div>
     </a>
 </li>

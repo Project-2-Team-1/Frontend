@@ -8,7 +8,7 @@
         <header>
             <h2 class="text-center">{{park.fullName}}</h2>
             <h6 class="text-center">{{overallRating ? overallRating.toFixed(2) + " stars (" + numRatings + " ratings)" : "This park has not been rated yet!"}}</h6>
-            <button *ngIf="authService.isLoggedIn()" id="add-park" class="btn btn-primary d-block mx-auto {{reviewed ? 'disabled' : ''}}" (click)="addPark()">{{reviewed ? "Added" : "Add this park"}}</button>
+            <button *ngIf="authService.isLoggedIn() && !loading" id="add-park" class="btn btn-primary d-block mx-auto {{reviewed ? 'disabled' : ''}}" (click)="addPark()">{{reviewed ? "Added" : "Add this park"}}</button>
         </header>
                 
         <div id="img-carousel" class="carousel slide mt-5 mx-auto" data-bs-ride="carousel" *ngIf="park.images.length > 0">
@@ -63,7 +63,7 @@
                 </p>
             </div>
 
-            <button *ngIf="authService.isLoggedIn()" class="btn btn-primary mb-4 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
+            <button *ngIf="authService.isLoggedIn() && !loading" class="btn btn-primary mb-4 mx-auto" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a Review!</button>
 
             <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

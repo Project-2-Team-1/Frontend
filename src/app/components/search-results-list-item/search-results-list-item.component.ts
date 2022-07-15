@@ -18,7 +18,7 @@ export class SearchResultsListItemComponent implements OnInit {
 
   ngOnInit(): void {
     // this.dataService.user = USER_PLACEHOLDER; // For testing
-    this.user = { ...this.dataService.user };
+    this.user = this.dataService.user;
     if(this.user.reviews) {
       let res = this.user.reviews.filter((r: any) => r.parkCode === this.park.parkCode);
       if(res.length > 0) {
@@ -26,6 +26,11 @@ export class SearchResultsListItemComponent implements OnInit {
         this.myRating = res[0].rating;
       }
     }
+  }
+
+  clickHandler() {
+    this.dataService.park = this.park;
+    sessionStorage.setItem("park", this.park.parkCode);
   }
 
   save() {

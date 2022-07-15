@@ -17,8 +17,6 @@ export class AuthService {
 
   loginUrl = url + '/login'; // http://localhost:5000/api/login
 
-
-
   constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string): Observable<any> {
@@ -57,5 +55,13 @@ export class AuthService {
 
     let jwtHelper = new JwtHelperService();
     return jwtHelper.decodeToken(token).id;
+  }
+
+  currentUserId(): number {
+    let token = sessionStorage.getItem("token");
+    if(!token) return 0;
+    let jwtHelper = new JwtHelperService();
+    console.log(jwtHelper.decodeToken(token).jti);
+    return jwtHelper.decodeToken(token).jti;
   }
 }
