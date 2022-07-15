@@ -51,11 +51,11 @@ export class AuthService {
     this.router.navigate(["/"]);
   }
 
-  currentUser(){
+  currentUserId(){
     let token = sessionStorage.getItem('token');
     if (!token) return null;
 
     let jwtHelper = new JwtHelperService();
-    return jwtHelper.decodeToken(token).sub;
+    return jwtHelper.decodeToken(token).id;
   }
 }

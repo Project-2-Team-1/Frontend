@@ -18,10 +18,14 @@ export class UpdateInfoComponent implements OnInit {
   clientMessage: ClientMessage = new ClientMessage('');
  
   constructor(private userService: UserService, private user: User, private authService: AuthService) { }
-  id = this.authService.currentUser()
+  id = this.authService.currentUserId()
   currentUser: any = this.userService.findUserById(this.id)
 
-  updateUserInfo(){
+  ngOnInit(): void{
+    this.userService.updateUser(this.currentUser);
+  }
+
+    updateUserInfo(){
     this.userService.updateUser(this.currentUser)
     .subscribe(
       data =>{
@@ -30,17 +34,6 @@ export class UpdateInfoComponent implements OnInit {
       },
       () => this.clientMessage.message =`Can't Update User Information`
     )
-  }
-
-// let currUser = this.userService.findUserByUsername(this.authService.currentUser());
-//   updateUserInfo(){
-//     let u = this.userService.findUserByUsername(this.authService.currentUser());
-//     this.userService.updateUser(u)
-//   }
-
-  ngOnInit(){
-
-
   }
 
 }
