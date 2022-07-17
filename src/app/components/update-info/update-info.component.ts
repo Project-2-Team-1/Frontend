@@ -19,7 +19,7 @@ export class UpdateInfoComponent implements OnInit {
   title = 'Update User Information:'
   clientMessage: ClientMessage = new ClientMessage('');
 
-  user: any;
+  user: User = new User(0, ``, ``, ``, ``, ``, [], []);
 
   constructor(
     private userService: UserService,
