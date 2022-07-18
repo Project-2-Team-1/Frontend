@@ -24,7 +24,7 @@ export class ParkComponent implements OnInit {
   user: any = {
 
   };
-  reviewed: boolean = false;
+  saved: boolean = false;
   reviewId: number | null = null;
   loading: boolean = true;
 
@@ -57,17 +57,39 @@ export class ParkComponent implements OnInit {
   }
 
   addPark() {
-    let body = {
+    let body: any = {
       parkCode: this.park.parkCode,
+      saved: true,
       user: {
         id: this.user.id
       }
+    }
+    let result = this.user.reviews.filter((r: any) => r.parkCode === this.park.parkCode);
+    console.log(result);
+    if(result.length > 0) {
+      body = result[0];
+      body.user = {
+        id: this.user.id
+      }
+      body.saved = true;
+      console.log(result[0].id, body);
     }
     this.reviewService.uploadReview(body)
         .subscribe((response) => {
           console.log(response);
           document.getElementById("add-park")?.setAttribute("disabled", "true");
-          this.reviewed = true;
+          if(result.length > 0) {
+            this.user.reviews = this.user.reviews.map((r: any) => {
+              if(r.id === response.id) {
+                return { ...r, saved: true };
+              }
+              return r;
+            })
+          } else {
+            this.user.reviews.push(response);
+          }
+          this.saved = response.saved;
+          this.dataService.user = this.user;
         })
   }
 
@@ -109,8 +131,8 @@ export class ParkComponent implements OnInit {
       this.numRatings = length;
       let result = this.user.reviews.filter((r: any) => r.parkCode === this.park.parkCode);
       if(result.length > 0) {
-        this.reviewed = true;
         let review = result[0];
+        this.saved = review.saved;
         this.rating = review.rating;
         this.content = review.content;
         this.reviewId = review.id;
@@ -122,7 +144,11 @@ export class ParkComponent implements OnInit {
   submitReview() {
     console.log("clicked")
     if(this.rating){
+      if(this.rating > 5) {
+        this.rating = 5;
+      }
       let body: any = {
+        saved: this.saved,
         rating: this.rating,
         content: this.content,
         parkCode: this.park.parkCode,
@@ -131,7 +157,7 @@ export class ParkComponent implements OnInit {
           id: this.user.id
         }
       }
-      if(this.reviewed){
+      if(this.saved){
         body.id = this.reviewId;
       }
       this.reviewService.uploadReview(body)
@@ -148,7 +174,22 @@ export class ParkComponent implements OnInit {
             this.reviews[i].dateReviewed = response.dateReviewed;
             this.reviews[i].date = new Date(response.dateReviewed);
           }
+          let userResult = this.user.reviews.filter((r: any) => r.parkCode === response.parkCode);
+          if(userResult.length > 0) {
+            this.user.reviews = this.user.reviews.map((r: any) => {
+              if(r.parkCode === response.parkCode) {
+                console.log(r.parkCode, response.rating);
+                return { ...r, rating: response.rating, content: response.content };
+              }
+              return r;
+            });
+            console.log(this.user.reviews);
+          } else {
+            this.user.reviews.push(response);
+          }
           this.reviewId = response.id;
+          this.dataService.user = this.user;
+          console.log(this.dataService.user.reviews);
         })
       document.getElementById("modal-close")?.click();
       this.rating = 0;
