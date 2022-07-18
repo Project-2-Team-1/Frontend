@@ -2,6 +2,7 @@ import { Timestamp } from "rxjs";
 
 export class Review{
     id: number;
+    saved: boolean;
     rating: number;
     content: string;
     dateReviewed: number; //to add timestamp or date later
@@ -10,6 +11,7 @@ export class Review{
 
   constructor(
     id: number, 
+    saved: boolean,
     rating: number, 
     content: string, 
     date: number, 
@@ -17,6 +19,7 @@ export class Review{
     user: any
 ) {
     this.id = id
+    this.saved = saved;
     this.rating = rating
     this.content = content
     this.dateReviewed = date
