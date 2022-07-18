@@ -56,10 +56,10 @@ export class ParkComponent implements OnInit {
     
   }
 
-  addPark() {
+  setSaved(save: boolean) {
     let body: any = {
       parkCode: this.park.parkCode,
-      saved: true,
+      saved: save,
       user: {
         id: this.user.id
       }
@@ -71,17 +71,16 @@ export class ParkComponent implements OnInit {
       body.user = {
         id: this.user.id
       }
-      body.saved = true;
+      body.saved = save;
       console.log(result[0].id, body);
     }
     this.reviewService.uploadReview(body)
         .subscribe((response) => {
           console.log(response);
-          document.getElementById("add-park")?.setAttribute("disabled", "true");
           if(result.length > 0) {
             this.user.reviews = this.user.reviews.map((r: any) => {
               if(r.id === response.id) {
-                return { ...r, saved: true };
+                return { ...r, saved: response.saved };
               }
               return r;
             })
