@@ -60,7 +60,6 @@ export class UpdateInfoComponent implements OnInit {
       .subscribe(
         response => {
           this.clientMessage.message = "User updated successfully";
-          this.clientMessage.message = "success";
         }
       );
   }
