@@ -51,7 +51,9 @@ export class UserComponent implements OnInit {
   private getSavedParks() {
     let codes = [];
     for(let r of this.user.reviews) {
-      codes.push(r.parkCode);
+      if(r.saved) {
+        codes.push(r.parkCode);
+      }
     }
     try {
       this.parkService.getParksByParkCode(codes)
