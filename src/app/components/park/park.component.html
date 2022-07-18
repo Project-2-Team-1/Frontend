@@ -8,7 +8,15 @@
         <header>
             <h2 class="text-center">{{park.fullName}}</h2>
             <h6 class="text-center">{{overallRating ? overallRating.toFixed(2) + " stars (" + numRatings + " ratings)" : "This park has not been rated yet!"}}</h6>
-            <button *ngIf="authService.isLoggedIn() && !loading" id="add-park" class="btn btn-primary d-block mx-auto {{reviewed ? 'disabled' : ''}}" (click)="addPark()">{{reviewed ? "Added" : "Add this park"}}</button>
+            <div class="text-center">
+                <button 
+                    *ngIf="authService.isLoggedIn() && !loading" id="add-park" 
+                    class="btn btn-primary {{saved ? 'disabled' : ''}}" 
+                    (click)="setSaved(true)" 
+                    [attr.disabled]="saved ? 'disabled' : null"
+                >{{saved ? "Added" : "Add this park"}}</button>
+                <button *ngIf="saved" (click)="setSaved(false)" class="btn btn-danger">Remove</button>
+            </div>
         </header>
                 
         <div id="img-carousel" class="carousel slide mt-5 mx-auto" data-bs-ride="carousel" *ngIf="park.images.length > 0">

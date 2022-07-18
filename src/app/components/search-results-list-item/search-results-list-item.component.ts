@@ -43,7 +43,7 @@ export class SearchResultsListItemComponent implements OnInit {
     if(this.user.reviews.length > 0) {
       let res = this.user.reviews.filter((r: any) => r.parkCode === this.park.parkCode);
       if(res.length > 0) {
-        this.saved = true;
+        this.saved = res[0].saved;
         this.myRating = res[0].rating;
       }
     }
