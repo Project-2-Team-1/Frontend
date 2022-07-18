@@ -101,6 +101,9 @@
                   Save Updated Information
                 </button>
               </div>
+              <div *ngIf="clientMessage.message.length > 0" class="alert alert-secondary" role="alert">
+                {{clientMessage.message}}
+              </div>
             </form>
           </div>
         </div>
